@@ -1,7 +1,7 @@
 $('document').ready(function(){
-    $('body').bind('mousedown',function(){
-        $('.tooTip').hide();
-    });
+        $('body').bind('mousedown',function(){
+           $('.tooTip').hide();
+        });
         $('body').bind('dblclick', function(e){
             var selection;
             $('.tooTip').show();
@@ -31,9 +31,6 @@ $('document').ready(function(){
 
 self.port.on("meaning",function(meaning){
      var word_meaning='<ul>';
-    console.log(meaning);
-    console.log("Tuc: "+ meaning['tuc']);
-
     if(typeof meaning['tuc'] !== 'undefined') {
         $.each(meaning['tuc'] ,function (key,value){
             if(typeof value['meanings'] !== 'undefined') {
@@ -42,13 +39,11 @@ self.port.on("meaning",function(meaning){
                     word_meaning +='<li>'+value_meaning['text'] +'.</li>';
                 });
             }
-
         });
     }
 word_meaning+='</ul>';
     $('.tooTip').append(word_meaning);
 });
-
 
 
 function getSelectedWord(){
@@ -61,6 +56,5 @@ var text = '';
                 text = document.selection.createRange().text;
               }
               text=text.toString();
-
 return text;
 }
