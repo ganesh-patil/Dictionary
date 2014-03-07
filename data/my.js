@@ -25,7 +25,6 @@ $('document').ready(function(){
             }
             var word=getSelectedWord();
             self.port.emit("double",word);
-
         });
 });
 
@@ -34,7 +33,6 @@ self.port.on("meaning",function(meaning){
     if(typeof meaning['tuc'] !== 'undefined') {
         $.each(meaning['tuc'] ,function (key,value){
             if(typeof value['meanings'] !== 'undefined') {
-                console.log('value Meaning= ' + value['meanings']);
                 $.each(value['meanings'], function (value_key,value_meaning) {
                     word_meaning +='<li>'+value_meaning['text'] +'.</li>';
                 });
@@ -42,6 +40,9 @@ self.port.on("meaning",function(meaning){
         });
     }
 word_meaning+='</ul>';
+if($(word_meaning).find('li').length ==0) {
+  word_meaning="<ul><p>Sorry... not found any definition.<p></ul>"
+}
     $('.tooTip').append(word_meaning);
 });
 
