@@ -1,0 +1,33 @@
+.tooTip{
+    background: #ffffcc;
+    border: solid 1px #ddcc77;
+    width: 250px;
+    /*position: relative;*/
+    position: absolute;
+    height: 100px;
+    padding:10px;
+    margin-top:10px;
+    overflow: auto;
+    z-index: 0;
+}
+/*.tooTip:before{
+    content: ' ';
+    height: 0;
+    position: absolute;
+    width: 0;
+    border: 10px solid transparent;
+    border-bottom-color: #ddcc77;
+    top: 0;
+    left: 5px;
+    z-index: 999999;
+}*/
+.tooTip ul{
+    margin-left: 15px;
+}
+.tooTip li{
+    list-style: disc;
+    font-weight: normal;
+}
+.tooTip{
+    font-weight: bold;
+}

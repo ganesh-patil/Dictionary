@@ -1,9 +1,36 @@
 $('document').ready(function(){
-//myalert("Test", "This is a test modal dialog");
-    $('body').dblclick(function(){
-       var word=getSelectedWord();
-      self.port.emit("double",word);
-});
+    $('body').bind('mousedown',function(){
+        $('.tooTip').hide();
+    });
+        $('body').bind('dblclick', function(e){
+            var selection;
+            $('.tooTip').show();
+            $('.tooTip').html('');
+            if (window.getSelection) {
+                selection = window.getSelection();
+
+            } else if (document.selection) {
+                selection = document.selection.createRange();
+            }
+            var selectedText = selection.toString()
+            var leftPos =  e.pageX+"px"
+            var topPos =   e.pageY+"px"
+
+            if (!selectedText == "") {
+                $('.tooTip').append(selectedText);
+                $('.tooTip').css({
+                    left : leftPos,
+                    top: topPos
+                })
+            }
+            var word=getSelectedWord();
+            self.port.emit("double",word);
+
+        });
+
+//    $('body').dblclick(function(){
+//
+//});
 });
 self.port.on("meaning",function(meaning){
      var word_meaning='<ul>';
@@ -16,14 +43,15 @@ self.port.on("meaning",function(meaning){
                 console.log('value Meaning= ' + value['meanings']);
                 $.each(value['meanings'], function (value_key,value_meaning) {
 //                             console.log(value_meaning['text']);
-                    word_meaning +='<li>'+value_meaning['text'] +'</li>';
+                    word_meaning +='<li>'+value_meaning['text'] +'.</li>';
                 });
             }
 
         });
     }
 word_meaning+='</ul>';
-  alert(word_meaning);
+//  alert(word_meaning);
+    $('.tooTip').append(word_meaning);
 });
 
 
