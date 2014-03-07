@@ -27,11 +27,8 @@ $('document').ready(function(){
             self.port.emit("double",word);
 
         });
-
-//    $('body').dblclick(function(){
-//
-//});
 });
+
 self.port.on("meaning",function(meaning){
      var word_meaning='<ul>';
     console.log(meaning);
@@ -42,7 +39,6 @@ self.port.on("meaning",function(meaning){
             if(typeof value['meanings'] !== 'undefined') {
                 console.log('value Meaning= ' + value['meanings']);
                 $.each(value['meanings'], function (value_key,value_meaning) {
-//                             console.log(value_meaning['text']);
                     word_meaning +='<li>'+value_meaning['text'] +'.</li>';
                 });
             }
@@ -50,7 +46,6 @@ self.port.on("meaning",function(meaning){
         });
     }
 word_meaning+='</ul>';
-//  alert(word_meaning);
     $('.tooTip').append(word_meaning);
 });
 
